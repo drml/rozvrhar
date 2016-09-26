@@ -131,7 +131,7 @@ class Schedule {
 	 */
 	public function formatRozvrhByStudentICAL($osoba, $rok, $semestr){
 		$ical = $this->getRozvrhByStudentICAL($osoba, $rok, $semestr);
-		return preg_replace_callback('/^SUMMARY:(\w+)\/(\d+)(\s.*)$/m', array($this, 'formatSummary'), $ical);
+		return preg_replace_callback('/^SUMMARY:(\w+)\/(\w+)(\s.*)$/m', array($this, 'formatSummary'), $ical);
 	
 	}
 	

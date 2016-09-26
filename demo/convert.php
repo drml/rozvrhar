@@ -9,7 +9,7 @@
  */
 
 
-require dirname(__FILE__) . '/Schedule.php';
+require dirname(__FILE__) . '/../Schedule.php';
 
 // INPUT A SANITACE
 $osoba		= strtoupper($_GET['osoba']);
@@ -19,8 +19,8 @@ $format		= $_GET['format'];
 
 $valid = true;
 
-if (!preg_match('/^\w\d{5}$/', $osoba)) {
-	echo "Chyba: Číslo osoby neodpovídá formátu X00000";
+if (!preg_match('/^\w{3,10}$/', $osoba)) {
+	echo "Chyba: Číslo osoby neodpovídá formátu /^\w{3,10}$/";
 	$valid = false;
 }
 
