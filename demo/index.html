@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!--
+Demoukázka použití třídy Schedule.
+
+Ondřej Doktor <doktor.ml@gmail.com>
+https://github.com/drml/rozvrhar
+license MIT
+ */
+-->
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>JČU Rozvrhář</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+		<link href="jumbotron-narrow.css" rel="stylesheet">
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+
+		<div class="container">
+			<div class="header clearfix">
+				<!--        <nav>
+						  <ul class="nav nav-pills pull-right">
+							<li role="presentation" class="active"><a href="#">Home</a></li>
+							<li role="presentation"><a href="#">About</a></li>
+							<li role="presentation"><a href="#">Contact</a></li>
+						  </ul>
+						</nav>-->
+				<h3 class="text-muted">JČU Rozvrhář</h3>
+			</div>
+
+			<div class="jumbotron">
+				<h1>Rozvrh ke stažení</h1>
+
+
+				<p class="lead">
+					Stáhněte si svůj osobní kalendář ve formátu iCAL, který je vhodný pro import třeba do Google Calendar.
+				<p>
+
+
+				<form action="convert.php" method="GET" target="_blank">
+
+					<div class="form-group row">
+						<label for="osoba" class="col-sm-2 col-form-label" >Os. číslo:</label>
+						<div class="col-sm-10">
+							<input type="text" name="osoba" maxlength="6" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="year" class="col-sm-2 col-form-label">Rok:</label>
+						<div class="col-sm-10">
+							<input type="number" name="rok" id="form-rok" min="2013" max="2016" class="form-control" />
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="year" class="col-sm-2 col-form-label">Období:</label>
+						<div class="col-sm-10">
+							<select name="semestr" class="form-control" id="form-semestr">
+								<option value="LS">Letní semestr</option>
+								<option value="ZS">Zimní semestr</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label for="year" class="col-sm-2 col-form-label">Formát:</label>
+						<div class="col-sm-10">
+							<select name="format" class="form-control">
+								<option value="A">ABC/123 - Předmět - Přednáška</option>
+								<option value="B">ABC/123 - Předmět</option>
+								<option value="C">Předmět - Přednáška</option>
+								<option value="D">Předmět</option>
+							</select>
+						</div>
+					</div>
+
+					<input type="submit" value="Stáhnout" class="btn btn-lg btn-success" />
+
+				</form>
+
+			</div>
+
+
+			<footer class="footer">
+				<p>&copy; 2016 Ondřej Doktor, licence MIT, <a href="https://github.com/drml/rozvrhar">@drml/rozvrhar</a></p>
+				<p>Inspirováno <a href="https://github.com/pavelmaca/jcu-rozvrhar">@pavelmaca/jcu-rozvrhar</a></p>
+			</footer>
+
+		</div>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script>
+			
+			$(document).ready(function(){
+				
+				date = new Date;
+				
+				$("#form-rok").attr('max',date.getFullYear());
+				$("#form-rok").attr('value',date.getFullYear());
+				
+				if (date.getMonth() > 7) {
+					$("#form-semestr").val('ZS');
+				}
+				
+			});
+			
+		</script>
+	</body>
+</html>
