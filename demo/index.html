@@ -55,7 +55,11 @@ license MIT
 					<div class="form-group row">
 						<label for="year" class="col-sm-2 col-form-label">Rok:</label>
 						<div class="col-sm-10">
-							<input type="number" name="rok" id="form-rok" min="2013" max="2016" class="form-control" />
+							
+							<div class="input-group">
+								<input type="number" name="rok" id="form-rok" min="2013" max="2016" class="form-control" aria-describedby="basic-addon2">
+								<span class="input-group-addon" id="basic-addon2">/ <span id="form-rok-druhy">2014</span></span>
+							</div>
 						</div>
 					</div>
 
@@ -99,19 +103,43 @@ license MIT
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 		<script>
 			
+			function updateDruhyRok() {
+				console.log(parseInt($("#form-rok").val()));
+				$("#form-rok-druhy").text(parseInt($("#form-rok").val()) + 1);
+			}
+			
 			$(document).ready(function(){
+				
+				$("#form-rok").bind('keyup mouseup',updateDruhyRok);
 				
 				date = new Date;
 				
 				$("#form-rok").attr('max',date.getFullYear());
-				$("#form-rok").attr('value',date.getFullYear());
 				
 				if (date.getMonth() > 7) {
 					$("#form-semestr").val('ZS');
+					$("#form-rok").attr('value',date.getFullYear());
+					updateDruhyRok();
+				} else {
+					$("#form-semestr").val('LS');
+					$("#form-rok").attr('value',date.getFullYear() - 1);
+					updateDruhyRok();
 				}
 				
 			});
 			
+
+			
 		</script>
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        
+          ga('create', 'UA-67848490-2', 'auto');
+          ga('send', 'pageview');
+        
+        </script>
 	</body>
 </html>
